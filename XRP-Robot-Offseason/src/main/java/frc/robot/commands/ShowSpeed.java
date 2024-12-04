@@ -36,8 +36,8 @@ public class ShowSpeed extends Command {
     leftEncoderDistance = m_drivetrain.getLeftDistanceMilli();
     rightEncoderDistance = m_drivetrain.getRightDistanceMilli();
 
-    SmartDashboard.putNumber("LeftVelocity", leftEncoderDistance/dt);
-    SmartDashboard.putNumber("RightVelocity", rightEncoderDistance/dt);
+    SmartDashboard.putNumber("LeftVelocity", dLeftEncoder/dt);
+    SmartDashboard.putNumber("RightVelocity", dRightEncoder/dt);
 
     SmartDashboard.putNumber("LeftReflectance", m_drivetrain.getLeftReflectance());
     SmartDashboard.putNumber("RightReflectance", m_drivetrain.getRightReflectance());
