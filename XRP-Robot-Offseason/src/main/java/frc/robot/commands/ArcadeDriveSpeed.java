@@ -1,15 +1,16 @@
 package frc.robot.commands;
 
 import frc.robot.subsystems.Drivetrain;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import java.util.function.Supplier;
 
-public class ArcadeDrive extends Command {
+public class ArcadeDriveSpeed extends Command {
   private final Drivetrain m_drivetrain;
   private final Supplier<Double> m_xaxisSpeedSupplier;
   private final Supplier<Double> m_zaxisRotateSupplier;
 
-  public ArcadeDrive(
+  public ArcadeDriveSpeed(
       Drivetrain drivetrain,
       Supplier<Double> xaxisSpeedSupplier,
       Supplier<Double> zaxisRotateSupplier) {
@@ -24,7 +25,9 @@ public class ArcadeDrive extends Command {
 
   @Override
   public void execute() {
-    m_drivetrain.arcadeDrive(m_xaxisSpeedSupplier.get(), m_zaxisRotateSupplier.get());
+    SmartDashboard.putNumber("LeftVelocity", m_drivetrain.getLeftEncoderRate());
+    SmartDashboard.putNumber("RightVelocity", m_drivetrain.getRightEncoderRate());
+    m_drivetrain.arcadeDriveSpeed(m_xaxisSpeedSupplier.get(), m_zaxisRotateSupplier.get());
   }
 
   @Override

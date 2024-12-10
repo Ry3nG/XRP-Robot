@@ -19,16 +19,16 @@ public class LineFollower extends Command {
   public void execute() {
     if ((m_drivetrain.getLeftReflectance() <= LineFollowerConstants.kDarkness)
       && (m_drivetrain.getRightReflectance() <= LineFollowerConstants.kDarkness)) {
-      m_drivetrain.arcadeDrive(0.425, 0.025);
+      m_drivetrain.arcadeDriveSpeed(0.425, 0.025);
     } else if ((m_drivetrain.getLeftReflectance() >= LineFollowerConstants.kDarkness)
       && (m_drivetrain.getRightReflectance() <= LineFollowerConstants.kDarkness)) {
-      m_drivetrain.arcadeDrive(3.5, 1.5);
+      m_drivetrain.arcadeDriveSpeed(3.5, 1.5);
     } else if ((m_drivetrain.getLeftReflectance() <= LineFollowerConstants.kDarkness)
       && (m_drivetrain.getRightReflectance() >= LineFollowerConstants.kDarkness)) {
-      m_drivetrain.arcadeDrive(4.5, 2.5);
+      m_drivetrain.arcadeDriveSpeed(4.5, 2.5);
     } else if ((m_drivetrain.getLeftReflectance() >= LineFollowerConstants.kDarkness)
       && (m_drivetrain.getRightReflectance() >= LineFollowerConstants.kDarkness)) {
-      m_drivetrain.arcadeDrive(0, 0);
+      m_drivetrain.arcadeDriveSpeed(0, 0);
     }
     SmartDashboard.putNumber("LeftReflectance", m_drivetrain.getLeftReflectance());
     SmartDashboard.putNumber("RightReflectance", m_drivetrain.getRightReflectance());
