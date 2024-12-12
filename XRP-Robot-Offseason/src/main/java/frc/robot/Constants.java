@@ -8,10 +8,10 @@ public final class Constants {
   }
 
   public static class DrivetrainConstants {
-    public static final double kleftP = 1;
+    public static final double kleftP = 0.01 * 0.8;
     public static final double kleftI = 0;
     public static final double kleftD = 0;
-    public static final double krightP = 1;
+    public static final double krightP = 0.01 * 0.8;
     public static final double krightI = 0;
     public static final double krightD = 0;
   }

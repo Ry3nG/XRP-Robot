@@ -18,7 +18,7 @@ public class RobotContainer {
 
   private void configureButtonBindings() {
    // m_drivetrain.setDefaultCommand(new ShowSpeed(m_drivetrain));
-    m_drivetrain.setDefaultCommand(getArcadeDriveCommand());
+    m_drivetrain.setDefaultCommand(new LineFollower(m_drivetrain));
   }
 
   public Command getArcadeDriveCommand() {

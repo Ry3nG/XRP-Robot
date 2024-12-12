@@ -19,13 +19,13 @@ public class LineFollower extends Command {
   public void execute() {
     if ((m_drivetrain.getLeftReflectance() <= LineFollowerConstants.kDarkness)
       && (m_drivetrain.getRightReflectance() <= LineFollowerConstants.kDarkness)) {
-      m_drivetrain.arcadeDriveSpeed(0.425, 0.025);
+      m_drivetrain.arcadeDriveSpeed(0.6, 0);
     } else if ((m_drivetrain.getLeftReflectance() >= LineFollowerConstants.kDarkness)
       && (m_drivetrain.getRightReflectance() <= LineFollowerConstants.kDarkness)) {
-      m_drivetrain.arcadeDriveSpeed(3.5, 1.5);
+      m_drivetrain.arcadeDriveSpeed(0.6, 0.4);
     } else if ((m_drivetrain.getLeftReflectance() <= LineFollowerConstants.kDarkness)
       && (m_drivetrain.getRightReflectance() >= LineFollowerConstants.kDarkness)) {
-      m_drivetrain.arcadeDriveSpeed(4.5, 2.5);
+      m_drivetrain.arcadeDriveSpeed(0.6, -0.4);
     } else if ((m_drivetrain.getLeftReflectance() >= LineFollowerConstants.kDarkness)
       && (m_drivetrain.getRightReflectance() >= LineFollowerConstants.kDarkness)) {
       m_drivetrain.arcadeDriveSpeed(0, 0);

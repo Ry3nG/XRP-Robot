@@ -37,8 +37,8 @@ public class Drivetrain extends SubsystemBase {
     m_rightMotor.setInverted(true);
     m_leftMotor.setInverted(false);
 
-    m_leftEncoder.setDistancePerPulse((Math.PI * kWheelDiameterMilli) / kCountsPerRevolution);
-    m_rightEncoder.setDistancePerPulse((Math.PI * kWheelDiameterMilli) / kCountsPerRevolution);
+    m_leftEncoder.setDistancePerPulse(0.5);
+    m_rightEncoder.setDistancePerPulse(0.5);
     resetEncoders();
   }
 
@@ -50,24 +50,26 @@ public class Drivetrain extends SubsystemBase {
     m_rightMotor.set(voltage);
   }
 
-  public double calculateLeftMotorVoltage(double leftMotorSpeed) {
-    return m_leftController.calculate(m_leftEncoder.getRate(), leftMotorSpeed);
+  public double calculateXaxisVoltage(double xaxisSpeed, double zaxisRotate) {
+    return m_leftController.calculate(m_leftEncoder.getRate(), ((xaxisSpeed - zaxisRotate)*300));
   }
 
-  public double calculateRightMotorVoltage(double rightMotorSpeed) {
-    return m_rightController.calculate(m_rightEncoder.getRate(), rightMotorSpeed);
+  public double calculateZaxisVoltage(double xaxisSpeed, double zaxisRotate) {
+    return m_rightController.calculate(m_rightEncoder.getRate(), ((xaxisSpeed + zaxisRotate)*400));
   }
 
-  public double calculateXaxisVoltage(double leftMotorSpeed, double rightMotorSpeed) {
-    return (calculateLeftMotorVoltage(leftMotorSpeed)+calculateRightMotorVoltage(rightMotorSpeed))/2;
+  public void arcadeDriveSpeed(double xaxisSpeed, double zaxisRotate) {
+/*    if ((xaxisSpeed<0.05) || (zaxisRotate<0.05)) {
+      m_leftMotor.set(0);
+      m_rightMotor.set(0);
+    } else { */
+    m_leftMotor.set(calculateXaxisVoltage(xaxisSpeed, zaxisRotate)*0.2);
+    
+    m_rightMotor.set(calculateZaxisVoltage(xaxisSpeed, zaxisRotate)*0.2);
+    
   }
-
-  public double calculateZaxisVoltage(double leftMotorSpeed, double rightMotorSpeed) {
-    return (calculateLeftMotorVoltage(leftMotorSpeed)-calculateRightMotorVoltage(rightMotorSpeed))/2;
-  }
-
-  public void arcadeDriveSpeed(double leftMotorSpeed, double rightMotorSpeed) {
-    m_diffDrive.arcadeDrive(calculateXaxisVoltage(leftMotorSpeed, rightMotorSpeed), calculateXaxisVoltage(leftMotorSpeed, rightMotorSpeed));
+  public void arcadeDrive(double xaxisSpeed, double zaxisRotate) {
+    m_diffDrive.arcadeDrive(xaxisSpeed, zaxisRotate);
   }
 
   public void resetEncoders() {
